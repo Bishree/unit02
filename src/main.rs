@@ -1,19 +1,21 @@
-mod test;
-use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
+
+use rand::Rng;
+
+mod test;
 
 fn main() {
 
     //create the secret num
-   let secret = rand::thread_rng().gen_range(1,101);
+    let secret = rand::thread_rng().gen_range(1, 101);
 
     //make a loop
     loop {
         println!("enter your guess number");
         let mut guess = String::new();
-        io::stdin().read_line(& mut guess).expect("this is not a number");
-        let guess:u32 = match guess.trim().parse() {
+        io::stdin().read_line(&mut guess).expect("this is not a number");
+        let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
@@ -24,7 +26,7 @@ fn main() {
             Ordering::Equal => {
                 println!(" You WIN ");
                 break;
-            },
+            }
         }
     }
 }
